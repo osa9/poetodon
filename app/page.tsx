@@ -99,6 +99,12 @@ const Page: any = () => {
         cardHeight
       }),
     })
+
+    if (!res.ok) {
+      setError("Error: 画像の生成に失敗しました(" + res.statusText + ")")
+      return
+    }
+
     const data = await res.blob()
 
     const url = window.URL.createObjectURL(data)
