@@ -11,13 +11,6 @@ const handler: NextApiHandler = async (req, res) => {
 
   const styles = getStylesCss(params)
 
-  const browser = await puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: { width: params.width, height: params.height},
-    executablePath: process.env.NODE_ENV === 'development' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' : await chromium.executablePath,
-    headless: true
-  })
-
   const createdAt = new Date(params.createdAt)
   const jstCreatedAt = new Date(createdAt.getTime() + (createdAt.getTimezoneOffset() * 60 * 1000) + (9 * 60 * 60 * 1000))
   const formattedCreatedAt = `${jstCreatedAt.getFullYear()}年${(jstCreatedAt.getMonth() + 1).toString().padStart(2, '0')}月${(jstCreatedAt.getDate()).toString().padStart(2, '0')}日 ${jstCreatedAt.getHours().toString().padStart(2, '0')}:${jstCreatedAt.getMinutes().toString().padStart(2, '0')}`
@@ -76,6 +69,17 @@ const handler: NextApiHandler = async (req, res) => {
         <div class="date">${formattedCreatedAt}</div>
       </body>
     </html>`
+
+  await chromium.font(
+    "https://raw.githack.com/minoryorg/Noto-Sans-CJK-JP/master/fonts/NotoSansCJKjp-Regular.ttf"
+  );
+
+  const browser = await puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: { width: params.width, height: params.height},
+    executablePath: process.env.NODE_ENV === 'development' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' : await chromium.executablePath,
+    headless: true
+  })
 
   const page = await browser.newPage()
   await page.setViewport({width:params.width, height:params.height, deviceScaleFactor: 2});
