@@ -17,6 +17,9 @@ const handler: NextApiHandler = async (req, res) => {
     headless: process.env.NODE_ENV === 'development' ? true : chromium.headless,
   })
 
+  console.log('launched')
+  console.log(chromium.headless)
+
   const createdAt = new Date(params.createdAt)
   const jstCreatedAt = new Date(createdAt.getTime() + (createdAt.getTimezoneOffset() * 60 * 1000) + (9 * 60 * 60 * 1000))
   const formattedCreatedAt = `${jstCreatedAt.getFullYear()}年${(jstCreatedAt.getMonth() + 1).toString().padStart(2, '0')}月${(jstCreatedAt.getDate()).toString().padStart(2, '0')}日 ${jstCreatedAt.getHours().toString().padStart(2, '0')}:${jstCreatedAt.getMinutes().toString().padStart(2, '0')}`
@@ -79,7 +82,12 @@ const handler: NextApiHandler = async (req, res) => {
   const page = await browser.newPage()
   await page.setViewport({width:params.width, height:params.height, deviceScaleFactor: 2});
   await page.setContent(html)
+
+  console.log('aaaa')
+
   const buffer = await page.screenshot()
+
+  console.log('screenshot')
 
   res.setHeader('Content-Type', 'image/png')
   res.setHeader('Cache-Control', 'public, immutable, no-transform, s-maxage=31536000, max-age=31536000')
