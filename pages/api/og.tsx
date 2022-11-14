@@ -1,12 +1,9 @@
 import {NextApiHandler} from "next";
 import chromium from 'chrome-aws-lambda'
 import puppeteer from 'puppeteer-core'
-import dayjs from 'dayjs'
-import timezone from 'dayjs/plugin/timezone';
 
 import { getStylesCss, OgParams} from "../../lib/og/api";
 
-dayjs.extend(timezone);
 
 const handler: NextApiHandler = async (req, res) => {
   const params = req.body as OgParams
@@ -20,6 +17,9 @@ const handler: NextApiHandler = async (req, res) => {
     headless: process.env.NODE_ENV === 'development' ? true : chromium.headless,
   })
 
+  const createdAt = new Date(params.createdAt)
+  const jstCreatedAt = new Date(createdAt.getTime() + (createdAt.getTimezoneOffset() * 60 * 1000) + (9 * 60 * 60 * 1000))
+  const formattedCreatedAt = `${jstCreatedAt.getFullYear()}年${(jstCreatedAt.getMonth() + 1).toString().padStart(2, '0')}月${(jstCreatedAt.getDate()).toString().padStart(2, '0')}日 ${jstCreatedAt.getHours().toString().padStart(2, '0')}:${jstCreatedAt.getMinutes().toString().padStart(2, '0')}`
 
   const html = `<html>
       <head>
@@ -72,7 +72,7 @@ const handler: NextApiHandler = async (req, res) => {
           <div class="user">${params.acct}</div>
         </div>
         <div class="content">${params.content}</div>
-        <div class="date">${dayjs(params.createdAt).format('YYYY年MM月DD日 HH:mm')}</div>
+        <div class="date">${formattedCreatedAt}</div>
       </body>
     </html>`
 
