@@ -14,7 +14,7 @@ const handler: NextApiHandler = async (req, res) => {
     args: chromium.args,
     defaultViewport: { width: params.width, height: params.height},
     executablePath: process.env.NODE_ENV === 'development' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' : await chromium.executablePath,
-    headless: process.env.NODE_ENV === 'development' ? true : chromium.headless,
+    headless: true
   })
 
   const createdAt = new Date(params.createdAt)

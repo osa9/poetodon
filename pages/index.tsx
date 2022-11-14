@@ -18,6 +18,7 @@ const Index: any = () => {
   const [url, setUrl] = React.useState('')
   const [error, setError] = React.useState<string>()
   const [loading, setLoading] = React.useState(false)
+  const [downloading, setDownloading] = React.useState(false)
 
   const [avatar, setAvatar] = React.useState(toot.account.avatar_static)
   const [displayName, setDisplayName] = React.useState(toot.account.display_name)
@@ -63,9 +64,11 @@ const Index: any = () => {
   }
 
   const onDownload = async () => {
-    if (loading) {
+    if (loading || downloading) {
       return
     }
+
+    setDownloading(true)
 
     const width = bodyRef?.current?.offsetWidth
     const height = bodyRef?.current?.offsetHeight
@@ -74,6 +77,7 @@ const Index: any = () => {
 
     if (!width || !height || !cardWidth || !cardHeight) {
       setError("Error: 画像の生成に失敗しました")
+      setDownloading(false)
       return
     }
 
@@ -101,6 +105,7 @@ const Index: any = () => {
 
     if (!res.ok) {
       setError("Error: 画像の生成に失敗しました(" + res.statusText + ")")
+      setDownloading(false)
       return
     }
 
@@ -111,6 +116,7 @@ const Index: any = () => {
     a.href = url
     a.download = 'og.png'
     a.click()
+    setDownloading(false)
   }
 
   const setTheme = (theme: OgTheme) => {
@@ -174,7 +180,7 @@ const Index: any = () => {
                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="background color" value={textColor} onChange={(event) => setTextColor(event.target.value)} />
       </div>
       <div className="mt-4">
-        <button className="bg-gray-500 hover:bg-gray-400 text-white rounded px-4 py-2 mt-2" onClick={onDownload}>Download</button>
+        <button className="bg-gray-500 hover:bg-gray-400 text-white rounded px-4 py-2 mt-2" onClick={onDownload} disabled={downloading}>{downloading ? 'Downloading...' : 'Download'}</button>
       </div>
     </div>
       </div>
