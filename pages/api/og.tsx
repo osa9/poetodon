@@ -5,47 +5,11 @@ import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone';
 
 import { getStylesCss, OgParams} from "../../lib/og/api";
-import head from "../../lib/head";
 
 dayjs.extend(timezone);
 
 const handler: NextApiHandler = async (req, res) => {
   const params = req.body as OgParams
-
-  /*const width = head(toot.width)
-  const height = head(req.query.height)
-  const cardWidth = head(req.query.cardWidth)
-  const cardHeight = head(req.query.cardHeight)
-  const color = head(req.query.color)
-  const cardColor = head(req.query.cardColor)
-  const textColor = head(req.query.textColor)
-  const avatar = head(req.query.avatar)
-  const displayName = head(req.query.displayName)
-  const acct = head(req.query.acct)
-  const content = head(req.query.content)
-  const createdAt = head(req.query.createdAt)
-
-  if (!width || ! height || !cardWidth || !cardHeight || !color || !cardColor || !textColor || !avatar || !displayName || !acct || !content || !createdAt) {
-    res.status(400).send('Bad Request')
-    return
-  }
-
-  const params: OgParams = {
-    width: Number.parseInt(width),
-    height: Number.parseInt(height),
-    cardWidth: Number.parseInt(cardWidth),
-    cardHeight: Number.parseInt(cardHeight),
-    color,
-    cardColor,
-    textColor,
-    avatar,
-    displayName,
-    acct,
-    content,
-    createdAt,
-  } */
-
-  console.log(params)
 
   const styles = getStylesCss(params)
 
