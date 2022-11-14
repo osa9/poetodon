@@ -80,7 +80,7 @@ const handler: NextApiHandler = async (req, res) => {
     </html>`
 
   const page = await browser.newPage()
-  await page.setViewport({width:params.width, height:params.height, deviceScaleFactor: 2});
+  await page.setViewport({width:params.width/2, height:params.height/2});
   await page.setContent(html)
 
   console.log('aaaa')
