@@ -1,0 +1,10 @@
+{
+  "semi": false,
+  "arrowParens": "always",
+  "singleQuote": true,
+  "tabWidth": 2,
+  "importOrder": ["^react$", "<THIRD_PARTY_MODULES>" ,"^@chakra-ui/(.*)$","^@mui/(.*)$", "@/components/(.*)$", "^@/core/(.*)$", "^@/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+}

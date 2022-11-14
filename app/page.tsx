@@ -1,0 +1,171 @@
+'use client'
+
+import React from 'react'
+
+import 'client-only'
+import { NextPage } from 'next'
+
+import {OgParams} from "../lib/og/api";
+import Og from "./og";
+
+import { OgTheme, themePresets} from "../lib/og/theme";
+import ColorCard from "./ColorCard";
+
+const testData =
+  '{"id":"109334526692059002","created_at":"2022-11-13T04:08:00.045Z","in_reply_to_id":null,"in_reply_to_account_id":null,"sensitive":false,"spoiler_text":"","visibility":"public","language":"ja","uri":"https://handon.club/users/highemerly/statuses/109334526692059002","url":"https://handon.club/@highemerly/109334526692059002","replies_count":0,"reblogs_count":2,"favourites_count":5,"edited_at":null,"favourited":false,"reblogged":false,"muted":false,"bookmarked":false,"content":"\u003cp\u003e【運営情報】はんドンクラブの計画メンテナンスは終了しました。現在、ダウンしていた時間の間に滞留してしまった外部サーバからの要求を処理しているので、しばらく動作遅延が発生します。\u003ca href=\\"https://handon.club/tags/handon_info\\" class=\\"mention hashtag\\" rel=\\"tag\\"\u003e#\u003cspan\u003ehandon_info\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e","reblog":null,"application":null,"account":{"id":"1","username":"highemerly","acct":"highemerly","display_name":"はん","locked":false,"bot":false,"discoverable":true,"group":false,"created_at":"2017-04-14T00:00:00.000Z","note":"\u003cp\u003e名前は「はん」です。表示名は、サーバ代の足しにするため、ネーミングライツを販売しています。\u003c/p\u003e\u003cp\u003e発言数多いです。空中リプライを多用します。内輪投稿が多いですが，どなたでも気軽に話しかけてください。\u003c/p\u003e\u003cp\u003e全ての投稿は個人の見解であり，所属する組織やはんドンクラブを代表する見解ではありません。\u003c/p\u003e\u003cp\u003e★Admin of handon.club.\u003c/p\u003e\u003cp\u003e★Inquiry for handon.club / 運営への問い合わせ\u003cbr /\u003eダイレクトメッセージ or highemerly :senbei: me.com  ( :senbei: → @ )\u003c/p\u003e\u003cp\u003e★Server info. / 運営情報\u003cbr /\u003e\u003ca href=\\"https://handon.club/tags/handon_info\\" class=\\"mention hashtag\\" rel=\\"tag\\"\u003e#\u003cspan\u003ehandon_info\u003c/span\u003e\u003c/a\u003e or \u003ca href=\\"https://handon.hatenablog.jp/\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer\\"\u003e\u003cspan class=\\"invisible\\"\u003ehttps://\u003c/span\u003e\u003cspan class=\\"\\"\u003ehandon.hatenablog.jp/\u003c/span\u003e\u003cspan class=\\"invisible\\"\u003e\u003c/span\u003e\u003c/a\u003e\u003cbr /\u003eその他は固定トゥート参照\u003c/p\u003e\u003cp\u003e★Patron / カンパ\u003cbr /\u003e\u003ca href=\\"https://fantia.jp/handon\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer\\"\u003e\u003cspan class=\\"invisible\\"\u003ehttps://\u003c/span\u003e\u003cspan class=\\"\\"\u003efantia.jp/handon\u003c/span\u003e\u003cspan class=\\"invisible\\"\u003e\u003c/span\u003e\u003c/a\u003e or \u003ca href=\\"https://www.amazon.jp/hz/wishlist/ls/2GFSVDC4FW72T\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer\\"\u003e\u003cspan class=\\"invisible\\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\\"ellipsis\\"\u003eamazon.jp/hz/wishlist/ls/2GFSV\u003c/span\u003e\u003cspan class=\\"invisible\\"\u003eDC4FW72T\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003e★Icon\u003cbr /\u003e\u003cspan class=\\"h-card\\"\u003e\u003ca href=\\"https://pawoo.net/@ech\\" class=\\"u-url mention\\"\u003e@\u003cspan\u003eech\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e","url":"https://handon.club/@highemerly","avatar":"https://media.handon.club/accounts/avatars/000/000/001/original/5a9499233e906258.jpg","avatar_static":"https://media.handon.club/accounts/avatars/000/000/001/original/5a9499233e906258.jpg","header":"https://media.handon.club/accounts/headers/000/000/001/original/004186f7720a5136.png","header_static":"https://media.handon.club/accounts/headers/000/000/001/original/004186f7720a5136.png","followers_count":689,"following_count":359,"statuses_count":113408,"last_status_at":"2022-11-13","emojis":[{"shortcode":"senbei","url":"https://media.handon.club/custom_emojis/images/000/010/407/original/c676d5cf09c1077d.png","static_url":"https://media.handon.club/custom_emojis/images/000/010/407/static/c676d5cf09c1077d.png","visible_in_picker":true}],"fields":[{"name":"Webpage","value":"\u003ca href=\\"https://highemerly.net/\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer me\\"\u003e\u003cspan class=\\"invisible\\"\u003ehttps://\u003c/span\u003e\u003cspan class=\\"\\"\u003ehighemerly.net/\u003c/span\u003e\u003cspan class=\\"invisible\\"\u003e\u003c/span\u003e\u003c/a\u003e","verified_at":"2020-01-13T06:03:46.562+00:00"},{"name":"Youtube","value":"\u003ca href=\\"https://youtube.com/channel/UCQAGPX23970WQ2wTpM7aZqw\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer me\\"\u003e\u003cspan class=\\"invisible\\"\u003ehttps://\u003c/span\u003e\u003cspan class=\\"ellipsis\\"\u003eyoutube.com/channel/UCQAGPX239\u003c/span\u003e\u003cspan class=\\"invisible\\"\u003e70WQ2wTpM7aZqw\u003c/span\u003e\u003c/a\u003e","verified_at":null},{"name":"Strike Witches","value":"3期6話","verified_at":null},{"name":"Pronoun","value":"they/them","verified_at":null}],"profile_emojis":[]},"media_attachments":[],"mentions":[],"tags":[{"name":"handon_info","url":"https://handon.club/tags/handon_info"}],"emojis":[],"card":null,"poll":null,"profile_emojis":[]}'
+
+const Page: any = () => {
+  const toot = JSON.parse(testData)
+
+  const [url, setUrl] = React.useState('')
+  const [error, setError] = React.useState<string>()
+  const [loading, setLoading] = React.useState(false)
+
+  const [avatar, setAvatar] = React.useState(toot.account.avatar_static)
+  const [displayName, setDisplayName] = React.useState(toot.account.display_name)
+  const [acct, setAcct] = React.useState('@' + toot.account.acct + '@handon.club')
+  const [content, setContent] = React.useState(toot.content)
+  const [createdAt, setCreatedAt] = React.useState(toot.created_at)
+
+  const [color, setColor] = React.useState(themePresets[0].color)
+  const [cardColor, setCardColor] = React.useState(themePresets[0].cardColor)
+  const [textColor, setTextColor] = React.useState(themePresets[0].textColor)
+  const [font, setFont] = React.useState(themePresets[0].font)
+
+  const bodyRef = React.useRef<HTMLDivElement>(null)
+  const cardRef = React.useRef<HTMLDivElement>(null)
+
+  const onGetUrl = async () => {
+    if (loading) {
+      return
+    }
+
+    if (!url) {
+      setError('URLを入力してください')
+      return
+    }
+
+    setLoading(true)
+
+    const res = await fetch('/api/status?url=' + encodeURIComponent(url))
+    const data = await res.json()
+
+    if (data.error) {
+      setError('Error: ' + data.error)
+    } else {
+      setError(undefined)
+      setAvatar(data.data.account.avatar_static)
+      setDisplayName(data.data.account.display_name)
+      setAcct('@' + data.data.account.acct + '@' + data.host)
+      setContent(data.data.content)
+      setCreatedAt(data.data.created_at)
+    }
+
+    setLoading(false)
+  }
+
+  const onDownload = async () => {
+    if (loading) {
+      return
+    }
+
+    const width = bodyRef?.current?.offsetWidth
+    const height = bodyRef?.current?.offsetHeight
+    const cardWidth = cardRef?.current?.offsetWidth
+    const cardHeight = cardRef?.current?.offsetHeight
+
+    if (!width || !height || !cardWidth || !cardHeight) {
+      setError("Error: 画像の生成に失敗しました")
+      return
+    }
+
+    const res = await fetch('/api/og', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        avatar,
+        displayName,
+        acct,
+        content,
+        createdAt,
+        color,
+        cardColor,
+        textColor,
+        font,
+        width,
+        height,
+        cardWidth,
+        cardHeight
+      }),
+    })
+    const data = await res.blob()
+
+    const url = window.URL.createObjectURL(data)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'og.png'
+    a.click()
+  }
+
+  const setTheme = (theme: OgTheme) => {
+    setColor(theme.color)
+    setCardColor(theme.cardColor)
+    setTextColor(theme.textColor)
+    setFont(theme.font)
+  }
+
+  const params: OgParams = {
+    width: 820,
+    height: 350,
+    color,
+    cardWidth: 600,
+    cardHeight: 300,
+    cardColor,
+    textColor,
+    font,
+
+    avatar,
+    displayName,
+    acct,
+    content,
+    createdAt
+  }
+
+  return (
+    <div className="flex flex-col items-center">
+      <div className="my-8 flex space-x-2 items-center" style={{width: '820px'}}>
+        <input type="text" id="first_name"
+             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tool URL e.g. https://handon.club/web/@highemerly/106072510934240987" value={url} onChange={(event) => {setUrl(event.target.value)}}/>
+        <button className="bg-gray-500 hover:bg-gray-400 text-white rounded px-4 py-2 mt-2" onClick={onGetUrl} disabled={loading}>{loading ? 'Loading..' : 'Get'}</button>
+        {error && <div className="text-red-500">{error}</div>}
+      </div>
+      <div className="my-4">
+        <Og og={params} bodyRef={bodyRef} cardRef={cardRef} />
+      </div>
+      <div className="flex space-x-2">
+        {themePresets.map((theme, i) => (
+          <ColorCard key={i} color={theme.color} cardColor={theme.cardColor} onClick={() => setTheme(theme)} />
+        ))}
+      </div>
+      <div className="mt-4" style={{width: 480}}>
+        <input type="text" id="first_name"
+               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="background color" value={color} onChange={(event) => setColor(event.target.value)} />
+      </div>
+      <div className="mt-4" style={{width: 480}}>
+        <input type="text" id="first_name"
+               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="background color" value={cardColor} onChange={(event) => setCardColor(event.target.value)} />
+      </div>
+      <div className="mt-4" style={{width: 480}}>
+        <input type="text" id="first_name"
+               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="background color" value={textColor} onChange={(event) => setTextColor(event.target.value)} />
+      </div>
+      <div className="mt-4">
+        <button className="bg-gray-500 hover:bg-gray-400 text-white rounded px-4 py-2 mt-2" onClick={onDownload}>Download</button>
+      </div>
+    </div>
+  )
+}
+
+export default Page
