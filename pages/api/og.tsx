@@ -1,5 +1,6 @@
 import {NextApiHandler} from "next";
 import chromium from 'chrome-aws-lambda'
+// @ts-ignore
 import puppeteer from 'puppeteer-core'
 
 import { getStylesCss, OgParams} from "../../lib/og/api";
