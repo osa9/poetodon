@@ -63,7 +63,7 @@ const handler: NextApiHandler = async (req, res) => {
         <div class="user">
           <img src="${params.avatar}" class="avatar" />
           <div class="displayName">${params.displayName}</div>
-          <div class="user">${params.acct}</div>
+          <div class="acct">${params.acct}</div>
         </div>
         <div class="content">${params.content}</div>
         <div class="date">${formattedCreatedAt}</div>
