@@ -41,7 +41,7 @@ export const getStyles = (params: OgParams) => {
     displayName: dispayNameStyle(),
     acct: acctStyle(),
     content: contentStyle(),
-    date: dateStyle()
+    date: dateStyle(textColor)
   }
 }
 

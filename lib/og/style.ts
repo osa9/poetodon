@@ -1,4 +1,5 @@
 import {number} from "prop-types";
+import {text} from "stream/consumers";
 
 export interface BodyStyleParams {
   width: number
@@ -83,10 +84,10 @@ export const contentStyle = () => {
   }
 }
 
-export const dateStyle = () => {
+export const dateStyle = (textColor: string) => {
   return {
     marginTop: '16px',
-    color: '#333',
+    color: textColor,
     fontSize: '15px'
   }
 }
