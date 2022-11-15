@@ -86,7 +86,7 @@ const handler: NextApiHandler = async (req, res) => {
     args: [...chromium.args, `--window-size=${params.width},${params.height}`],
     defaultViewport: { width: params.width, height: params.height},
     executablePath: process.env.NODE_ENV === 'development' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' : await chromium.executablePath,
-    headless: false
+    headless: true
   })
 
   const page = await browser.newPage()
