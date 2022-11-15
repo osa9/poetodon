@@ -63,7 +63,7 @@ const Index: any = () => {
     setLoading(false)
   }
 
-  const onDownload = async () => {
+  const onDownload = async (toClipboard: boolean = false) => {
     if (loading || downloading) {
       return
     }
@@ -111,11 +111,26 @@ const Index: any = () => {
 
     const data = await res.blob()
 
-    const url = window.URL.createObjectURL(data)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'og.png'
-    a.click()
+    if (toClipboard) {
+      try {
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            'image/png': data
+          })
+        ]);
+      } catch (e) {
+        setError("Error: クリップボードへのコピーに失敗しました")
+        setDownloading(false)
+        return
+      }
+    } else {
+      const url = window.URL.createObjectURL(data)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'card.png'
+      a.click()
+    }
+
     setDownloading(false)
   }
 
@@ -180,7 +195,8 @@ const Index: any = () => {
                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="background color" value={textColor} onChange={(event) => setTextColor(event.target.value)} />
       </div>
       <div className="mt-4">
-        <button className="bg-gray-500 hover:bg-gray-400 text-white rounded px-4 py-2 mt-2" onClick={onDownload} disabled={downloading}>{downloading ? 'Downloading...' : 'Download'}</button>
+        <button className="bg-gray-500 hover:bg-gray-400 text-white rounded px-4 py-2 mt-2 mx-2" onClick={() => onDownload(true)} disabled={downloading}>{downloading ? 'Generating...' : 'Copy'}</button>
+        <button className="bg-gray-500 hover:bg-gray-400 text-white rounded px-4 py-2 mt-2 mx-2" onClick={() => onDownload(false)} disabled={downloading}>{downloading ? 'Generating...' : 'Download'}</button>
       </div>
     </div>
       </div>
