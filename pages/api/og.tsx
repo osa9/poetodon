@@ -25,6 +25,10 @@ const handler: NextApiHandler = async (req, res) => {
           padding: 0;
         }
         
+        * {
+           box-sizing: border-box;
+        }        
+        
         .card {
           ${styles.card}
         }
@@ -59,6 +63,7 @@ const handler: NextApiHandler = async (req, res) => {
         }
 
         </style>
+        <script src="https://cdn.tailwindcss.com"></script>
       </head>
       <body>
         <div class="card">
@@ -78,17 +83,17 @@ const handler: NextApiHandler = async (req, res) => {
   );
 
   const browser = await puppeteer.launch({
-    args: chromium.args,
+    args: [...chromium.args, `--window-size=${params.width},${params.height}`],
     defaultViewport: { width: params.width, height: params.height},
     executablePath: process.env.NODE_ENV === 'development' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' : await chromium.executablePath,
-    headless: true
+    headless: false
   })
 
   const page = await browser.newPage()
-  await page.setViewport({width:params.width, height:params.height, deviceScaleFactor: 2});
+  await page.setViewport({width:params.width, height:params.height, deviceScaleFactor: 1});
   await page.setContent(html)
 
-  const buffer = await page.screenshot()
+  const buffer = await page.screenshot({omitBackground: true, fullPage: true})
 
   res.setHeader('Content-Type', 'image/png')
   res.setHeader('Cache-Control', 'public, immutable, no-transform, s-maxage=31536000, max-age=31536000')
