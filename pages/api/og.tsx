@@ -18,12 +18,21 @@ const handler: NextApiHandler = async (req, res) => {
   const html = `<html>
       <head>
         <style>
-
+        
+        @font-face {
+          font-family: NotoColorEmojiLimited;
+          unicode-range: U+1F1E6-1F1FF;
+          src: url(https://raw.githack.com/googlefonts/noto-emoji/main/fonts/NotoColorEmoji.ttf);
+        }
+        
+        html, body {
+          font-family: 'NotoColorEmojiLimited', sans-serif;
+        }
+        
         body {
           ${styles.body};
           margin: 0;
           padding: 0;
-          font-family: 'NotoColorEmojiLimited', sans-serif;
         }
         
         * {
@@ -61,13 +70,7 @@ const handler: NextApiHandler = async (req, res) => {
         
         .date {
           ${styles.date}
-        }
-        
-        @font-face {
-          font-family: NotoColorEmojiLimited;
-          unicode-range: U+1F1E6-1F1FF;
-          rc: url(https://raw.githack.com/googlefonts/noto-emoji/main/fonts/NotoColorEmoji.ttf);
-        }        
+        }  
 
         </style>
         <script src="https://cdn.tailwindcss.com"></script>
