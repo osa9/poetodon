@@ -90,7 +90,7 @@ const handler: NextApiHandler = async (req, res) => {
   })
 
   const page = await browser.newPage()
-  await page.setViewport({width:params.width, height:params.height, deviceScaleFactor: 1});
+  await page.setViewport({width:params.width, height:params.height, deviceScaleFactor: 2});
   await page.setContent(html)
 
   const buffer = await page.screenshot({omitBackground: true, fullPage: true})
