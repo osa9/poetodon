@@ -168,13 +168,13 @@ const Index: any = () => {
       <div>
     <div className="flex flex-col items-center">
 
-      <div className="my-8 flex space-x-2 items-center" style={{width: '820px'}}>
+      <div className="mt-8 flex space-x-2 items-center" style={{width: '820px'}}>
         <input type="text" id="first_name"
              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tool URL e.g. https://handon.club/web/@highemerly/106072510934240987" value={url} onChange={(event) => {setUrl(event.target.value)}}/>
         <button className="bg-gray-500 hover:bg-gray-400 text-white rounded px-4 py-2 mt-2" onClick={onGetUrl} disabled={loading}>{loading ? 'Loading..' : 'Get'}</button>
-        {error && <div className="text-red-500">{error}</div>}
       </div>
-      <div className="my-4">
+      {error && <div className="text-red-500">{error}</div>}
+      <div className="mt-8 mb-4">
         <Og og={params} bodyRef={bodyRef} cardRef={cardRef} />
       </div>
       <div className="flex space-x-2">

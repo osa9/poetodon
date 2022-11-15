@@ -79,7 +79,8 @@ const handler: NextApiHandler = async (req, res) => {
     </html>`
 
   await chromium.font(
-    "https://raw.githack.com/minoryorg/Noto-Sans-CJK-JP/master/fonts/NotoSansCJKjp-Regular.ttf"
+    "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf"
+    //"https://raw.githack.com/minoryorg/Noto-Sans-CJK-JP/master/fonts/NotoSansCJKjp-Regular.ttf"
   );
 
   const browser = await puppeteer.launch({
