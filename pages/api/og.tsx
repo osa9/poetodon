@@ -17,17 +17,8 @@ const handler: NextApiHandler = async (req, res) => {
 
   const html = `<html>
       <head>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet" />
         <style>
-        
-        @font-face {
-          font-family: NotoColorEmojiLimited;
-          unicode-range: U+1F1E6-1F1FF;
-          src: url(https://raw.githack.com/googlefonts/noto-emoji/main/fonts/NotoColorEmoji.ttf);
-        }
-        
-        html, body {
-          font-family: 'NotoColorEmojiLimited', sans-serif;
-        }
         
         body {
           ${styles.body};

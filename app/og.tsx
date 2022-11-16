@@ -1,8 +1,6 @@
 import React, {LegacyRef} from 'react'
 
 import {getStyles, OgParams} from "../lib/og/api";
-import dayjs from "dayjs";
-import {bodyStyle} from "../lib/og/style";
 
 export interface OgProps {
   og: OgParams
@@ -13,6 +11,10 @@ export interface OgProps {
 const Og: React.FC<OgProps> = ({og,bodyRef,cardRef}) => {
   const styles = getStyles(og)
 
+  const createdAt = new Date(og.createdAt)
+  const jstCreatedAt = new Date(createdAt.getTime() + (createdAt.getTimezoneOffset() * 60 * 1000) + (9 * 60 * 60 * 1000))
+  const formattedCreatedAt = `${jstCreatedAt.getFullYear()}年${(jstCreatedAt.getMonth() + 1).toString().padStart(2, '0')}月${(jstCreatedAt.getDate()).toString().padStart(2, '0')}日 ${jstCreatedAt.getHours().toString().padStart(2, '0')}:${jstCreatedAt.getMinutes().toString().padStart(2, '0')}`
+
   return (
     <div ref={bodyRef} style={{...styles.body, boxSizing: 'border-box', margin: 'auto', userSelect: 'none', pointerEvents: 'none'}}>
       <div ref={cardRef} style={styles.card as any}>
@@ -22,7 +24,7 @@ const Og: React.FC<OgProps> = ({og,bodyRef,cardRef}) => {
           <div style={styles.acct}>{og.acct}</div>
         </div>
         <div dangerouslySetInnerHTML={{ __html: og.content }} style={styles.content} className="content" />
-        <div style={styles.date}>{dayjs(og.createdAt).format("YYYY年MM月DD日 HH:mm")}</div>
+        <div style={styles.date}>{formattedCreatedAt}</div>
       </div>
     </div>
   )

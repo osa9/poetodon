@@ -55,7 +55,7 @@ const Index: any = () => {
       setError(undefined)
       setAvatar(data.data.account.avatar_static)
       setDisplayName(data.data.account.display_name)
-      setAcct('@' + data.data.account.acct + '@' + data.host)
+      setAcct('@' + data.data.account.acct + (data.data.account.acct.includes('@') ? '' : '@' + data.host))
       setContent(data.data.content)
       setCreatedAt(data.data.created_at)
     }
@@ -163,6 +163,7 @@ const Index: any = () => {
       <Head>
         <title>Poetodon</title>
         <link rel="icon" href="/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet" />
       </Head>
       <h1 style={{ color: '#efefef' }} className="text-4xl">Poetodon</h1>
       <div>
