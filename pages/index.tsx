@@ -10,6 +10,8 @@ import { OgTheme, themePresets} from "../lib/og/theme";
 import ColorCard from "../app/ColorCard";
 import Head from "next/head";
 
+import { toBlob } from 'html-to-image'
+
 const testData = '{"id":"106072510934240987","created_at":"2021-04-16T01:54:29.709Z","in_reply_to_id":null,"in_reply_to_account_id":null,"sensitive":false,"spoiler_text":"","visibility":"public","language":"ja","uri":"https://handon.club/users/highemerly/statuses/106072510934240987","url":"https://handon.club/@highemerly/106072510934240987","replies_count":0,"reblogs_count":4,"favourites_count":14,"edited_at":null,"favourited":false,"reblogged":false,"muted":false,"bookmarked":false,"content":"\u003cp\u003e何度でも言いますが、「仲良くしてね」と言うのは「馴れ合え」という意味ではなく、「気に食わん奴がおっても意識的に仲を悪くするようなことをやるな無視しろ」と言う意味です。\u003c/p\u003e","reblog":null,"application":null,"account":{"id":"1","username":"highemerly","acct":"highemerly","display_name":"はん","locked":false,"bot":false,"discoverable":true,"group":false,"created_at":"2017-04-14T00:00:00.000Z","note":"\u003cp\u003e名前は「はん」です。表示名は、サーバ代の足しにするため、ネーミングライツを販売しています。\u003c/p\u003e\u003cp\u003e発言数多いです。空中リプライを多用します。内輪投稿が多いですが，どなたでも気軽に話しかけてください。\u003c/p\u003e\u003cp\u003e全ての投稿は個人の見解であり，所属する組織やはんドンクラブを代表する見解ではありません。\u003c/p\u003e\u003cp\u003e★Admin of handon.club.\u003c/p\u003e\u003cp\u003e★Inquiry for handon.club / 運営への問い合わせ\u003cbr /\u003eダイレクトメッセージ or highemerly :senbei: me.com  ( :senbei: → @ )\u003c/p\u003e\u003cp\u003e★Server info. / 運営情報\u003cbr /\u003e\u003ca href=\\"https://handon.club/tags/handon_info\\" class=\\"mention hashtag\\" rel=\\"tag\\"\u003e#\u003cspan\u003ehandon_info\u003c/span\u003e\u003c/a\u003e or \u003ca href=\\"https://handon.hatenablog.jp/\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer\\"\u003e\u003cspan class=\\"invisible\\"\u003ehttps://\u003c/span\u003e\u003cspan class=\\"\\"\u003ehandon.hatenablog.jp/\u003c/span\u003e\u003cspan class=\\"invisible\\"\u003e\u003c/span\u003e\u003c/a\u003e\u003cbr /\u003eその他は固定トゥート参照\u003c/p\u003e\u003cp\u003e★Patron / カンパ\u003cbr /\u003e\u003ca href=\\"https://fantia.jp/handon\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer\\"\u003e\u003cspan class=\\"invisible\\"\u003ehttps://\u003c/span\u003e\u003cspan class=\\"\\"\u003efantia.jp/handon\u003c/span\u003e\u003cspan class=\\"invisible\\"\u003e\u003c/span\u003e\u003c/a\u003e or \u003ca href=\\"https://www.amazon.jp/hz/wishlist/ls/2GFSVDC4FW72T\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer\\"\u003e\u003cspan class=\\"invisible\\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\\"ellipsis\\"\u003eamazon.jp/hz/wishlist/ls/2GFSV\u003c/span\u003e\u003cspan class=\\"invisible\\"\u003eDC4FW72T\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003e★Icon\u003cbr /\u003e\u003cspan class=\\"h-card\\"\u003e\u003ca href=\\"https://pawoo.net/@ech\\" class=\\"u-url mention\\"\u003e@\u003cspan\u003eech\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e","url":"https://handon.club/@highemerly","avatar":"https://media.handon.club/accounts/avatars/000/000/001/original/5a9499233e906258.jpg","avatar_static":"https://media.handon.club/accounts/avatars/000/000/001/original/5a9499233e906258.jpg","header":"https://media.handon.club/accounts/headers/000/000/001/original/004186f7720a5136.png","header_static":"https://media.handon.club/accounts/headers/000/000/001/original/004186f7720a5136.png","followers_count":690,"following_count":359,"statuses_count":113525,"last_status_at":"2022-11-14","emojis":[{"shortcode":"senbei","url":"https://media.handon.club/custom_emojis/images/000/010/407/original/c676d5cf09c1077d.png","static_url":"https://media.handon.club/custom_emojis/images/000/010/407/static/c676d5cf09c1077d.png","visible_in_picker":true}],"fields":[{"name":"Webpage","value":"\u003ca href=\\"https://highemerly.net/\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer me\\"\u003e\u003cspan class=\\"invisible\\"\u003ehttps://\u003c/span\u003e\u003cspan class=\\"\\"\u003ehighemerly.net/\u003c/span\u003e\u003cspan class=\\"invisible\\"\u003e\u003c/span\u003e\u003c/a\u003e","verified_at":"2020-01-13T06:03:46.562+00:00"},{"name":"Youtube","value":"\u003ca href=\\"https://youtube.com/channel/UCQAGPX23970WQ2wTpM7aZqw\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer me\\"\u003e\u003cspan class=\\"invisible\\"\u003ehttps://\u003c/span\u003e\u003cspan class=\\"ellipsis\\"\u003eyoutube.com/channel/UCQAGPX239\u003c/span\u003e\u003cspan class=\\"invisible\\"\u003e70WQ2wTpM7aZqw\u003c/span\u003e\u003c/a\u003e","verified_at":null},{"name":"Strike Witches","value":"3期6話","verified_at":null},{"name":"Pronoun","value":"they/them","verified_at":null}],"profile_emojis":[]},"media_attachments":[],"mentions":[],"tags":[],"emojis":[],"card":null,"poll":null,"profile_emojis":[]}'
 
 const Index: any = () => {
@@ -64,13 +66,13 @@ const Index: any = () => {
   }
 
   const onDownload = async (toClipboard: boolean = false) => {
-    if (loading || downloading) {
+    if (loading || downloading || !bodyRef.current) {
       return
     }
 
     setDownloading(true)
 
-    const width = bodyRef?.current?.offsetWidth
+    /*const width = bodyRef?.current?.offsetWidth
     const height = bodyRef?.current?.offsetHeight
     const cardWidth = cardRef?.current?.offsetWidth
     const cardHeight = cardRef?.current?.offsetHeight
@@ -109,7 +111,14 @@ const Index: any = () => {
       return
     }
 
-    const data = await res.blob()
+    const data = await res.blob() */
+
+    const data = await toBlob(bodyRef.current, {cacheBust: true})
+    if (!data) {
+      setError("Error: 画像の生成に失敗しました")
+      setDownloading(false)
+      return
+    }
 
     if (toClipboard) {
       try {

@@ -16,6 +16,7 @@
     "dayjs": "^1.11.6",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
+    "html-to-image": "^1.10.8",
     "next": "13.0.3",
     "puppeteer-core": "6.0.0",
     "react": "18.2.0",
