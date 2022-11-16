@@ -45,7 +45,7 @@ export const cardStyle = ({width, height, background, textColor}: CardStyleParam
     boxSizing: 'border-box',
     border: '1px solid hsla(0, 0%, 70%, 0.23)',
     boxShadow: 'rgb(0 0 0 / 5%) 4px 6px 20px 0px, rgb(0 0 0 / 7%) 3px 2px 6px 0px',
-    fontFamily: "sans-serif, 'Noto Color Emoji'"
+    // fontFamily: "sans-serif, 'Noto Color Emoji'"
   }
 }
 
