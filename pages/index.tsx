@@ -153,7 +153,11 @@ const Index: any = () => {
     const data = await res.blob() */
 
     try {
-      const data = await toBlob(bodyRef.current, { cacheBust: true })
+      let data;
+      for (let i = 0; i < 2; i++) {
+        data = await toBlob(bodyRef.current, {cacheBust: true}) // need to call twice to get correct image
+      }
+
       if (!data) {
         setError('Error: 画像の生成に失敗しました')
         setDownloading(false)
