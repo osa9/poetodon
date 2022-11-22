@@ -23,7 +23,7 @@ const PollValue: React.FC<{ title: string; percentage: number }> = ({
 export const Poll: React.FC<PollProps> = ({ poll }) => {
   const total = poll.votesCount
   return <div>
-    {poll.options.map((option: PollOption) => <PollValue title={option.title} percentage={option.votesCount / total} />)}
+    {poll.options.map((option, i) => <PollValue key={i} title={option.title} percentage={option.votesCount / total} />)}
   </div>
 }
 
