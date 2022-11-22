@@ -28,6 +28,7 @@ export interface OgParams {
   acct: string
   content: string
   createdAt: string
+  poll?: any
 }
 
 

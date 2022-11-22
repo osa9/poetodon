@@ -1,6 +1,7 @@
 import React, {LegacyRef} from 'react'
 
 import {getStyles, OgParams} from "../lib/og/api";
+import Poll from "../components/Poll";
 
 export interface OgProps {
   og: OgParams
@@ -24,6 +25,7 @@ const Og: React.FC<OgProps> = ({og,bodyRef,cardRef}) => {
           <div style={styles.acct}>{og.acct}</div>
         </div>
         <div dangerouslySetInnerHTML={{ __html: og.content }} style={styles.content} className="content" />
+        {og.poll && <div className="mt-4"><Poll poll={og.poll} /></div>}
         <div style={styles.date}>{formattedCreatedAt}</div>
       </div>
     </div>
