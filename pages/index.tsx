@@ -93,26 +93,32 @@ const Index: NextPage<ServerSideParams> = ({tootData}) => {
 
     setLoading(true)
 
-    const res = await fetch('/api/status?url=' + encodeURIComponent(url))
-    const data = await res.json()
+    try {
 
-    if (data.error) {
-      setError('Error: ' + data.error)
-    } else {
-      setError(undefined)
-      setAvatar(data.data.account.avatar_static)
-      setDisplayName(data.data.account.display_name)
-      setAcct(
-        '@' +
+      const res = await fetch('/api/status?url=' + encodeURIComponent(url))
+      const data = await res.json()
+
+      if (data.error) {
+        setError('Error: ' + data.error)
+      } else {
+        setError(undefined)
+        setAvatar(data.data.account.avatar_static)
+        setDisplayName(data.data.account.display_name)
+        setAcct(
+          '@' +
           data.data.account.acct +
           (data.data.account.acct.includes('@') ? '' : '@' + data.host)
-      )
-      setContent(data.data.content)
-      setPoll(toPoll(data.data.poll))
-      setCreatedAt(data.data.created_at)
+        )
+        setContent(data.data.content)
+        setPoll(data.data.poll ?? toPoll(data.data.poll))
+        setCreatedAt(data.data.created_at)
+      }
+
+      resizeEvent()
+    } catch(err) {
+      console.error(err)
     }
 
-    resizeEvent()
     setLoading(false)
   }
 
