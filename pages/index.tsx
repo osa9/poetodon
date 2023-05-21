@@ -94,7 +94,6 @@ const Index: NextPage<ServerSideParams> = ({tootData}) => {
     setLoading(true)
 
     try {
-
       const res = await fetch('/api/status?url=' + encodeURIComponent(url))
       const data = await res.json()
 
@@ -110,7 +109,7 @@ const Index: NextPage<ServerSideParams> = ({tootData}) => {
           (data.data.account.acct.includes('@') ? '' : '@' + data.host)
         )
         setContent(data.data.content)
-        setPoll(data.data.poll ?? toPoll(data.data.poll))
+        setPoll(data.data.poll && toPoll(data.data.poll))
         setCreatedAt(data.data.created_at)
       }
 
